@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    ROOT: warn
+    hu.nitrowise: info
+    hu.nitrowise.nkm.akr: trace
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+spring:
+  profiles:
+    active: dev
+  jpa:
+    properties.hibernate.format_sql: true
+    properties.hibernate.show_sql: true
+    database: sql_server
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  session:
+    store-type: none
+  datasource:
+    jdbc-url: jdbc:sqlserver://localhost:1433;databaseName=NKM_AKR_DB;applicationName=AKR-Java;
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: ${DB_USER:sa}
+    password: ${DB_PASSWORD:Sa123Sa123}
+    minimum-idle: ${DB_POOL_MIN:2}
+    maximum-pool-size: ${DB_POOL_MAX:4}
+    idle-timeout: 300000
+    max-lifetime: 600000
+    auto-commit: false
+    catalog: ${DB_NAME:NKM_AKR_DB}
+    url: jdbc:sqlserver://localhost:1433;databaseName=NKM_AKR_DB;applicationName=AKR-Java;
